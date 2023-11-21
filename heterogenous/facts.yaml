@@ -5,3 +5,12 @@
   - name: print all the facts
     ansible.builtin.debug:
       msg: "All Facts: {{ansible_facts}}"
+
+   # just imagine we don't have user module available
+- name: add user ubuntu
+  ansible.builtin.command: adduser vinod
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: add user centos
+  ansible.builtin.command: useradd vinod
+  when: ansible_facts['distribution'] == "CentOS"
