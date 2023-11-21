@@ -1,0 +1,14 @@
+- name: demo on parallelism
+  hosts: nginx
+  become: yes
+  tasks:
+  - name: Install nginx
+    ansible.builtin.yum:
+      name: nginx
+      state: installed
+
+  - name: Start and enable nginx
+    ansible.builtin.service:
+     name: nginx
+     enabled: yes
+     state: started
